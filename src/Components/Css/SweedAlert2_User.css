@@ -1,0 +1,13 @@
+/* 
+*************** COLORES BAQ ************
+
+NARAJA  =   #ec8223
+VERDE   =   #94c11f
+ROJO    =   #e30613
+NEGRO   =   #1c100c
+
+*/
+
+.swal2-popup.swal2-modal.swal2-show {
+    outline: 3px solid  #ec8223;
+}
