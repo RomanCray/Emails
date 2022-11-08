@@ -1,13 +1,11 @@
 import React from "react";
-import logoBAQ from "../Img/Logo_Color_PNG.png";
 import Swal from "sweetalert2";
 import Button from "@mui/material/Button";
-import { FaSlack } from "@react-icons/all-files/fa/FaSlack";
-import IconButton from "@mui/material/IconButton";
+// import IconButton from "@mui/material/IconButton";
 import "../Css/SweedAlert2_User.css";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { type } from "@testing-library/user-event/dist/type";
+// import { type } from "@testing-library/user-event/dist/type";
 const theme = createTheme({
     palette: {
         baq: {
@@ -57,15 +55,14 @@ export const AlertaMixin = (props) => {
                     color={colorBoton}
                     variant="outlined"
                     onClick={mostrarAlerta}
-                    endIcon={
+                    // endIcon={
                         // <IconButton
                         //     size="small"
                         //     aria-label="fingerprint"
                         //     color="inherit"
-                        // >
-                        <FaSlack />
+                        // >                        
                         // </IconButton>
-                    }
+                    // }
                 >
                     Mostrar Alerta 🤤
                 </Button>
@@ -105,49 +102,6 @@ export const AlertaNomr = (props) => {
                     Mostrar Alerta
                 </Button>
             </ThemeProvider>
-        </div>
-    );
-};
-
-
-
-
-const esperar = () => {     
-
-    return new Promise((resolve,reject)=>{
-        (async ()=>{
-            let nombre   
-            const { value: text } = await Swal.fire({
-                position: "center",
-                showConfirmButton: true,
-                allowOutsideClick: false,
-                allowEscapeKey: false,
-                title: "Hola! Bienbenido al BAQ",
-                imageUrl: logoBAQ,
-                imageWidth: 400,
-                imageHeight: 200,
-                imageAlt: "Custom image",
-        
-                input: "text",
-                inputPlaceholder: "Ingresa tu nombre...",
-                showCancelButton: true,
-            });
-        
-            if (text) {
-                Swal.fire("Bienvenido " + text);
-                nombre = text;
-                resolve(nombre);
-            }
-        })()
-    });    
-};
-
-export const AlertaUser = async (props) => {
-    let name = await esperar();
-
-    return (
-        <div>
-            <h1>{name ? name : name = 'basio'}</h1>
         </div>
     );
 };

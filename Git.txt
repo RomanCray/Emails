@@ -1,0 +1,36 @@
+/*
+Para empezar en un equipo nuevo es nesesario configurar el git
+*/
+
+git config --global user.name 'RomanCray'
+git config --global user.email 'email.@gmail.com'
+
+/*
+ahora para crar una coneccion entre git y git-hub vamos a generar una conexion por SSH
+*/
+
+// creamos la llave
+
+ssh-keygen -t rsa -b 4096 -C "santipau-1998@hotmail.com"
+
+//copiamos el contenido del archivo y 
+//pegamos en git-hub
+
+clip <~/.ssh/id_rsa.pub
+
+/*
+para clonar un repositorio de git-hub
+usamos 
+(priemro nos ubicamos donde queremos q este la carpeta q se va a clonar)
+*/
+
+git clone (ssh del repositorio)
+
+/*
+Para actualizar el local usamos 
+*/
+
+//descargamos la metadata
+git fetch
+//añadimos los archivos descargados 
+git pull origin main
