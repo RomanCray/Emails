@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@mui/material/Button";
-import { HiOutlineMailOpen } from "react-icons/hi";
+// import { HiOutlineMailOpen } from "react-icons/hi";
 
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -22,8 +22,7 @@ const theme = createTheme({
 });
 
 export const BotonsMas = (props) => {
-    const { TextoBtn, ColorBoton,icono } = props; 
-    let cono = <HiOutlineMailOpen/>
+    const { TextoBtn, ColorBoton,icono } = props;    
 
     return (
         <div className="btns_mas">

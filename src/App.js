@@ -1,6 +1,7 @@
 
 import './App.css';
-import { AlertaMixin, AlertaNomr } from './Components/Js/RMC_Alertas';
+// import excel from '../back/carga.php'
+// import { AlertaMixin, AlertaNomr } from './Components/Js/RMC_Alertas';
 
 import logoBAQ from "./Components/Img/Logo_Color_PNG.png";
 import Swal from "sweetalert2";
@@ -75,6 +76,7 @@ function App() {
             TextoBtn='Nueva Empresa'
             ColorBoton="baqG"
             icono = {<ImOffice/>} />
+            <a href='../carga.php'>cargar excel</a>
         </div>
         <div className='body-App_tbl_empresas'></div>
       </div>
