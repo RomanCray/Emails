@@ -1,7 +1,6 @@
 
 import './App.css';
-// import excel from '../back/carga.php'
-// import { AlertaMixin, AlertaNomr } from './Components/Js/RMC_Alertas';
+// import { AlertaNomr } from './Components/Js/RMC_Alertas';4
 
 import logoBAQ from "./Components/Img/Logo_Color_PNG.png";
 import Swal from "sweetalert2";
@@ -10,15 +9,12 @@ import { BotonsMas } from './Components/Js/Botones';
 
 import { HiOutlineMailOpen } from "react-icons/hi";
 import { ImOffice } from "react-icons/im";
+import { SescodTable } from './Components/Js/Tablas2';
 
 
 function App() {
 
   const [usuario, getUsuario] = useState('');
-
-  // console.log('*************');
-  // console.log(<HiOutlineMailOpen/>);
-  // console.log('*************');
 
   (async () => {
 
@@ -40,7 +36,7 @@ function App() {
         showCancelButton: true,
       }).then(res => {
         if (res.value) {
-          Swal.fire("Bienvenido " + res.value);
+          // Swal.fire("Bienvenido " + res.value);
           getUsuario(res.value);
         }
       }
@@ -51,6 +47,7 @@ function App() {
   // ****************************************
   return (
     <div className='conteiner-App'>
+
       <div className='header-app'>
         <div className='hdr_img'>
           <img src={logoBAQ} alt="" />
@@ -69,18 +66,21 @@ function App() {
           <BotonsMas
             TextoBtn='Nuevo mensaje'
             ColorBoton="baqN"
-            icono = {<HiOutlineMailOpen />}
-          >            
+            icono={<HiOutlineMailOpen />}
+          >
           </BotonsMas>
           <BotonsMas
             TextoBtn='Nueva Empresa'
             ColorBoton="baqG"
-            icono = {<ImOffice/>} />
-            <a href='../carga.php'>cargar excel</a>
+            icono={<ImOffice />} />
         </div>
-        <div className='body-App_tbl_empresas'></div>
+        <div className='body-App_tbl_empresas'>
+          <SescodTable />
+        </div>
       </div>
-
+      {/* <AlertaNomr
+        texto='Hola aaaaaaaaaaa'
+        nameicono='error' /> */}
     </div>
   );
   // ****************************************  

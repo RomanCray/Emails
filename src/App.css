@@ -81,6 +81,10 @@
     -webkit-background-clip: text;
     color: transparent;
   }
+
+  .body-App_tbl_empresas { 
+    display: flex;   
+  }
 }
 
 .body-App {  
@@ -100,4 +104,24 @@
 .btns_mas {
   width: 270px;  
   background: transparent;
+}
+
+.body-App_tbl_empresas {
+  margin-top: 10px;  
+  flex-wrap: wrap;
+  background: #fff;  
+  width: 100%;
+  padding: 15px;
+  border-radius: 1em;
+}
+
+.container_table {
+  overflow: scroll;
+  height: 500px; 
+  width: 100%;
+}
+
+.handsontable span.colHeader, .handsontable td {
+  font-size: 1.2em;
+  font-weight: 600;
 }

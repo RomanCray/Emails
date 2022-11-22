@@ -55,14 +55,14 @@ export const AlertaMixin = (props) => {
                     color={colorBoton}
                     variant="outlined"
                     onClick={mostrarAlerta}
-                    // endIcon={
-                        // <IconButton
-                        //     size="small"
-                        //     aria-label="fingerprint"
-                        //     color="inherit"
-                        // >                        
-                        // </IconButton>
-                    // }
+                // endIcon={
+                // <IconButton
+                //     size="small"
+                //     aria-label="fingerprint"
+                //     color="inherit"
+                // >                        
+                // </IconButton>
+                // }
                 >
                     Mostrar Alerta 🤤
                 </Button>
@@ -72,18 +72,18 @@ export const AlertaMixin = (props) => {
 };
 
 export const AlertaNomr = (props) => {
-    const { nameicono } = props;
+    const { nameicono,texto } = props;
 
     const mostrarAlerta = () => {
         Swal.fire({
             position: "bottom",
             showConfirmButton: false,
-            timer: 3000,
+            timer: 10000,
             timerProgressBar: true,
             background: "#000",
             color: "#fff",
             icon: nameicono,
-            title: "Signed in successfully",
+            title: texto,
             allowOutsideClick: false,
             allowEscapeKey: false,
             backdrop: `
@@ -97,11 +97,7 @@ export const AlertaNomr = (props) => {
 
     return (
         <div>
-            <ThemeProvider theme={theme}>
-                <Button color="baq" variant="outlined" onClick={mostrarAlerta}>
-                    Mostrar Alerta
-                </Button>
-            </ThemeProvider>
+            {mostrarAlerta()}
         </div>
     );
 };
