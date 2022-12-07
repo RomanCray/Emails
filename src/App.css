@@ -58,33 +58,9 @@
 }
 
 .nombre {
-  font-size: 2.5em !important;
+  font-size: 1.9em !important;
   padding-left: 90px;
   color: #ec8223;
-}
-
-@media only screen and (max-width: 767px) {
-  .hdr_nombre,
-  .hdr_img,
-  .header{
-    font-size: 2em;
-    width: 100%;
-    justify-content: center;
-    align-content: center;
-    text-align: center;    
-  }
-
-  .hdr_nombre p {
-    text-align: center;
-    font-size: 1.5em;    
-    background: linear-gradient(to left, #ec8223 40%, #94c11f 40%);
-    -webkit-background-clip: text;
-    color: transparent;
-  }
-
-  .body-App_tbl_empresas { 
-    display: flex;   
-  }
 }
 
 .body-App {  
@@ -93,6 +69,7 @@
 }
 
 .body-App_btns_nuevos {
+  margin-top: 10px;  
   display: flex;
   flex-wrap: wrap;
   background: #fff;  
@@ -121,7 +98,39 @@
   width: 100%;
 }
 
-.handsontable span.colHeader, .handsontable td {
+.handsontable span.colHeader, .handsontable td , .handsontable span.rowHeader{
   font-size: 1.2em;
   font-weight: 600;
+}
+
+.btn_Table_Search{
+  border: 2px solid #ec8223;
+}
+
+@media only screen and (max-width: 767px) {
+  .hdr_nombre,
+  .hdr_img,
+  .header{
+    font-size: 2em;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    text-align: center;    
+  }
+
+  .hdr_nombre p {
+    text-align: center;
+    font-size: 1.5em;    
+    /* background: linear-gradient(to left, #ec8223 40%, #94c11f 40%);
+    -webkit-background-clip: text;
+    color: transparent; */
+  }
+
+  .nombre {
+    font-size: .9em !important;    
+  }
+
+  /* .body-App_tbl_empresas { 
+    display: flex;   
+  } */
 }

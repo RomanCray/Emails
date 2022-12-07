@@ -2,8 +2,10 @@ import React from "react";
 import { HotTable, HotColumn } from "@handsontable/react";
 import { registerAllModules } from "handsontable/registry";
 import { registerLanguageDictionary, esMX } from "handsontable/i18n";
+import TextField from '@mui/material/TextField';
 import "handsontable/dist/handsontable.full.css";
-import { AlertaNomr } from "./RMC_Alertas";
+import { BotonsMas } from "./Botones";
+import { TfiReload } from "react-icons/tfi";
 
 // ejecutar para obtener todas las funciones de handsontable
 registerAllModules();
@@ -15,20 +17,19 @@ export const SescodTable = () => {
     const hotTableComponent = React.useRef(null);
 
     React.useEffect(() => {
-        async function getData() {
-            await fetch('http://localhost/web/excelphp/')
+        const getData = async () => {
+            await fetch('http://192.168.0.6/web/excelphp/')
                 .then((response) => response.json())
                 .then((data) => setUsuarios(data));
-        }
+        };
 
         getData();
     }, []);
 
     const descargarArchivo = () => {
-        const pluginDescarga =
-            hotTableComponent.current.hotInstance.getPlugin("exportFile");
+        // const pluginDescarga = hotTableComponent.current.hotInstance.getPlugin("exportFile");
 
-        console.table(hotTableComponent.current.hotInstance);
+        console.log(hotTableComponent.current.hotInstance);
 
         // pluginDescarga.downloadFile("csv", {
         //   filename: "usuarios",
@@ -36,55 +37,67 @@ export const SescodTable = () => {
         //   mimeType: "text/csv",
         //   columnHeaders: true,
         // });
+        // alert("hi");
+        const getData = async () => {
+            await fetch('http://192.168.0.6/web/excelphp/')
+                .then((response) => response.json())
+                .then((data) => setUsuarios(data));
+        };
 
+        getData();
     };
 
     return (
         <div>
-            <input id="search_field" onKeyUp={(e) => {
+            <div className='body-App_btns_nuevos'>
+                <TextField
+                    sx={{ m: 1, width: 270 }}
+                    size="small"
+                    helperText=" "
+                    id="search_field"
+                    label="Buscar"
+                    color="warning"
+                    type="search"
+                    onKeyUp={(e) => {
 
-                const search = hotTableComponent.current.hotInstance.getPlugin('search');
-                const queryResult = search.query(e.target.value);
-                console.log(queryResult);
-                hotTableComponent.current.hotInstance.render();
-            }} type="search" placeholder="Search"></input>
+                        const search = hotTableComponent.current.hotInstance.getPlugin('search');
+                        const queryResult = search.query(e.target.value);
+                        hotTableComponent.current.hotInstance.render();
+                    }}
+                />
+                <BotonsMas
+                    TextoBtn='Actualizar Tabla'
+                    ColorBoton="inherit"
+                    Click={descargarArchivo}
+                    icono={<TfiReload />}
+                    xsPW={270}
+                >
+                </BotonsMas>
+            </div>
 
-            <button onClick={() => descargarArchivo()}>Descargar Archivo</button>
-            {usuarios.length > 0 ?
-                <div className='container_table'>
+            <div className='container_table'>
 
-                    <HotTable
-                        ref={hotTableComponent}
-                        language={esMX.languageCode}
-                        data={usuarios}
-                        licenseKey="non-commercial-and-evaluation"
-                        // colHeaders={true}
-                        // rowHeaders={true}
-                        // columnSorting={true}
-                        // mergeCells={true}
-                        contextMenu={true}
-                        // readOnly={false}
-                        search={true}
-                    // searchResultClass='my-custom-search-result-class'                            
-                    >
-                        <HotColumn data="Id" readOnly={true} />
-                        <HotColumn data="Empresa" title="Nombre" />
-                        <HotColumn data='Correo' />
-                        <HotColumn data='Representante' />
-                        <HotColumn data='Telefono' />
-                        <HotColumn data='Correo' />
-                        <HotColumn data='Representante' />
-                        <HotColumn data='Telefono' />
-                        <HotColumn data='Correo' />
-                        <HotColumn data='Representante' />
-                        <HotColumn data='Telefono' />
-                    </HotTable>
-                </div>
-                : <AlertaNomr
-                texto ='Hola aaaaaaaaaaa'
-                nameicono= 'error' />
-            }            
-
+                <HotTable
+                    ref={hotTableComponent}
+                    language={esMX.languageCode}
+                    data={usuarios}
+                    licenseKey="non-commercial-and-evaluation"
+                    // colHeaders={true}
+                    rowHeaders={true}
+                    // columnSorting={true}
+                    // mergeCells={true}
+                    contextMenu={true}
+                    // readOnly={false}
+                    search={true}
+                // searchResultClass='my-custom-search-result-class'                            
+                >
+                    <HotColumn data="Tipo-Donante" readOnly={false} title="Id" />
+                    <HotColumn data='Empresa' title="Empresa" />
+                    <HotColumn data='Nombre' title="Nombre" />
+                    <HotColumn data='Cargo' title="Cargo" />
+                    <HotColumn data='Teléfono' title="Teléfono" />
+                </HotTable>
+            </div>
         </div>
     );
 };

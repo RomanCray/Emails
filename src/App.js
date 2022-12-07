@@ -1,89 +1,50 @@
 
 import './App.css';
-// import { AlertaNomr } from './Components/Js/RMC_Alertas';4
 
-import logoBAQ from "./Components/Img/Logo_Color_PNG.png";
-import Swal from "sweetalert2";
-import { useState } from 'react';
-import { BotonsMas } from './Components/Js/Botones';
+import { useEffect, useState } from 'react';
 
-import { HiOutlineMailOpen } from "react-icons/hi";
-import { ImOffice } from "react-icons/im";
-import { SescodTable } from './Components/Js/Tablas2';
-
+import Bqackdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
+import { Startp } from './Components/Js/Inicio';
 
 function App() {
+  const [usuario1, getUsuario1] = useState('');
 
-  const [usuario, getUsuario] = useState('');
 
-  (async () => {
-
-    if (usuario === '') {
-
-      Swal.fire({
-        imageUrl: logoBAQ,
-        imageWidth: 400,
-        imageHeight: 200,
-        imageAlt: "Logo BAQ",
-        position: "center",
-        showConfirmButton: true,
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        title: "Hola! Bienbenido al BAQ",
-
-        input: "text",
-        inputPlaceholder: "Tu nombre...",
-        showCancelButton: true,
-      }).then(res => {
-        if (res.value) {
-          // Swal.fire("Bienvenido " + res.value);
-          getUsuario(res.value);
-        }
-      }
-      );
+  useEffect(() => {
+    async function getData() {
+      await fetch('http://192.168.0.6/web/excelphp/')
+        .then((response) => response.json())
+        .then((data) => getUsuario1(data));
     }
-  })()
 
-  // ****************************************
+    getData();
+  }, []);
+
+  const [open, setOpen] = useState(true);
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div className='conteiner-App'>
+      {!usuario1 ?
 
-      <div className='header-app'>
-        <div className='hdr_img'>
-          <img src={logoBAQ} alt="" />
-        </div>
-        <div className='hdr_nombre'>
-          <p className='saludo'>
-            Hola
-            <b className='prb'>!</b>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <p className='nombre'>{usuario}</p>
-          </p>
-        </div>
-      </div>
-      <div className='body-App'>
-        <div className='body-App_btns_nuevos'>
-          <BotonsMas
-            TextoBtn='Nuevo mensaje'
-            ColorBoton="baqN"
-            icono={<HiOutlineMailOpen />}
-          >
-          </BotonsMas>
-          <BotonsMas
-            TextoBtn='Nueva Empresa'
-            ColorBoton="baqG"
-            icono={<ImOffice />} />
-        </div>
-        <div className='body-App_tbl_empresas'>
-          <SescodTable />
-        </div>
-      </div>
-      {/* <AlertaNomr
-        texto='Hola aaaaaaaaaaa'
-        nameicono='error' /> */}
+        <Bqackdrop Backdrop
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={open}
+          onClick={handleClose}
+        >
+          <CircularProgress color="inherit" />
+        </Bqackdrop>
+        : <>
+          <Startp />
+        </>
+      }
     </div>
   );
-  // ****************************************  
 }
 
 export default App;
+
+// ****************************************        

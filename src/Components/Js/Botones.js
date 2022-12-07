@@ -22,17 +22,18 @@ const theme = createTheme({
 });
 
 export const BotonsMas = (props) => {
-    const { TextoBtn, ColorBoton,icono } = props;    
+    const { TextoBtn, ColorBoton,icono,Click,xsPW } = props;    
 
     return (
         <div className="btns_mas">
+            {console.log(xsPW)}            
             <ThemeProvider theme={theme}>
                 <Button
-                    sx={{m:1, width: 250 }}                    
+                    sx={{mr:1.5, width: xsPW===undefined || xsPW===''? 270: xsPW }}                    
                     color= {ColorBoton}
                     variant="outlined"
-                    size="large"
-                    // onClick={mostrarAlerta}
+                    size="small"
+                    onClick={Click}
                     endIcon={
                         // <IconButton
                         //     size="small"
